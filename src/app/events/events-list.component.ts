@@ -20,6 +20,7 @@ export class EventsListComponent {
     }
   }
 
+  // display Output() in the console
   clickMeFunc(data){
     console.log(data);
   }

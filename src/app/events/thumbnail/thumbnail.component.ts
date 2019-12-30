@@ -24,6 +24,7 @@ export class ThumbnailComponent {
   @Output() eventClick = new EventEmitter()
 
   clickMeFunc() {
-    this.eventClick.emit('Thank you Alex for making the WEB so easier');
+    //this.eventClick.emit('Thank you Alex for making the WEB so easier');
+    this.eventClick.emit(this.event.name);
   }
 }
