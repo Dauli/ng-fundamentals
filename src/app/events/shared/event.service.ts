@@ -5,9 +5,14 @@ export class EventService {
   getEvents() {
     return EVENTS;
   }
+
+  // methode uses in EventsDetailsComponent
+  getEvent(id:number) {
+    return EVENTS.find(event => event.id === id);
+  }
 }
 
-// data
+// data. That could come from an API
 const EVENTS = [
   {
     id: 1,
