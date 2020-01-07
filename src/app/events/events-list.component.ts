@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { EventService } from './shared/event.service';
 import { ToastrService } from './common/toastr.service';
+import { ActivatedRoute } from "@angular/router";
 
 declare let toastr;
 
@@ -23,7 +24,8 @@ declare let toastr;
 export class EventsListComponent implements OnInit {
   events: any = []
   constructor(private eventService: EventService,
-    private toastrService: ToastrService) {
+    private toastrService: ToastrService,
+    private route: ActivatedRoute) {
     // all data implemented here can take long to load
   }
 
@@ -32,7 +34,7 @@ export class EventsListComponent implements OnInit {
   ngOnInit() {
     // suscribe to observable 'cause we use Subject in our service
     this.eventService.getEvents().subscribe( events => {
-      this.events = events;
+      this.events = this.route.snapshot.data['events'];
     });
   }
 
