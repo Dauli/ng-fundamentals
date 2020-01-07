@@ -31,8 +31,19 @@ import { EventRouteActivator } from './events/events-details/event-route-activat
   providers: [
     EventService,
     ToastrService,
-    EventRouteActivator
+    EventRouteActivator,
+    { provide: 'canDeactiveCreateEvent', useValue: checkDirtyState }
   ],
   bootstrap: [EventsAppComponent]
 })
 export class AppModule { }
+
+export function checkDirtyState(component: CreateEventComponent) {
+  if(component.isDirty) {
+    return window.confirm(
+      'You have not seved this event, do you really want to leave?'
+    );
+  } else {
+    return true;
+  }
+}
