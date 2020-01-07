@@ -1,4 +1,5 @@
 import { Component, Input} from '@angular/core'
+import { IEvent } from '../shared/index'
 
 @Component({
   selector: 'thumbnail',
@@ -29,7 +30,7 @@ import { Component, Input} from '@angular/core'
   `]
 })
 export class ThumbnailComponent {
-  @Input() event: any
+  @Input() event: IEvent
 
   // function of custom class
   getStartTimeClass() {
