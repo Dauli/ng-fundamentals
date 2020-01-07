@@ -30,7 +30,10 @@ export class EventsListComponent implements OnInit {
   // note that ngOnInit always load automatically in the browser
   // reason why we call our data here to load automatically
   ngOnInit() {
-    this.events = this.eventService.getEvents();
+    // suscribe to observable 'cause we use Subject in our service
+    this.eventService.getEvents().subscribe( events => {
+      this.events = events;
+    });
   }
 
   // toastr handle click
