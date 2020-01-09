@@ -6,11 +6,17 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styles: [`
     button { margin: 10px; }
+    em {
+      float: right;
+      color: #E05C65;
+      padding: 10px;
+    }
   `]
 })
 export class LoginComponent {
   //userName;
   //password;
+  mouseOverLogin;
 
   constructor(private authService: AuthService, private router: Router) {
 
