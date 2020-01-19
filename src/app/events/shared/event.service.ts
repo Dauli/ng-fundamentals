@@ -18,6 +18,14 @@ export class EventService {
   getEvent(id:number) {
     return EVENTS.find(event => event.id === id);
   }
+
+  // save event collected from CreateEventComponent
+  saveEvent(event) {
+    event.id = 999;
+    event.session = [];
+    EVENTS.push(event);
+  }
+
 }
 
 // data. That could come from an API
