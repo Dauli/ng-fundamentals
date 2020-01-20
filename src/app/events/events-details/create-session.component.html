@@ -48,6 +48,8 @@
       abstract?.errors.required">Required</em>
       <em *ngIf="abstract.invalid && abstract.dirty &&
       abstract?.errors.maxlength">Can not exeed 400 characters</em>
+      <em *ngIf="abstract.invalid && abstract.dirty && abstract?.errors.restrictedWords">
+        Restricted words found: {{ abstract.errors.restrictedWords }}</em>
       <textarea formControlName="abstract" id="abstract" rows=3
       class="form-control" placeholder="abstract..."></textarea>
     </div>
@@ -56,4 +58,5 @@
       Save</button>
     <button type="button" class="btn btn-default">Cancel</button>
   </form>
+  <br><br>
 </div>

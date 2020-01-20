@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ISession } from '../shared';
+import { restrictedWords } from "../shared/index";
 
 @Component({
   templateUrl: './create-session.component.html',
@@ -11,7 +12,7 @@ import { ISession } from '../shared';
       color: #E05C65;
       padding: 10px;
     }
-    .error input { background-color: #E3C3C5; }
+    .error input, .error select, .error textarea { background-color: #E3C3C5; }
     .error::webkit-input-placeholder { color: #999; }
     .error::-moz-placeholder { color: #999; }
     .error:-moz-placeholder { color: #999; }
@@ -31,7 +32,11 @@ export class CreateSessionComponent implements OnInit {
     this.presenter = new FormControl('', Validators.required);
     this.duration = new FormControl('', Validators.required);
     this.level = new FormControl('', Validators.required);
-    this.abstract = new FormControl('', Validators.required);
+    // custom validators has been added bellow
+    this.abstract = new FormControl('',
+      [Validators.required, Validators.maxLength(400),
+      restrictedWords(['foo', 'bar'])] // this. has been remove in case of import funct.
+    );
 
     this.newSessionForm = new FormGroup({
       name: this.name,
@@ -56,4 +61,24 @@ export class CreateSessionComponent implements OnInit {
     }
     console.log(session);
   }
+
+  /**
+   * Some customs validators functions
+   * That work fine.
+   * But let's make it's own function file to import it here
+   * and it will be a reusable restricted words
+   * in shared/restricted-words.validators.ts
+
+  private restrictedWords(words) {
+    return (control: FormControl): { [key:string]: any } => {
+      if(!words) return null;
+      var invalidWords = words
+        .map( w => control.value.includes(w) ? w : null)
+        .filter( w => w != null);
+
+      return invalidWords && invalidWords.length > 0 ? {'restrictedWords' : invalidWords
+        .join(', ')} : null;
+    }
+  }
+  */
 }
