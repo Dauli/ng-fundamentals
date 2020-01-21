@@ -7,7 +7,7 @@ import { appRoutes } from './route';
 import {
   EventsListComponent, ThumbnailComponent, EventService, ToastrService,
   EventsDetailsComponent, CreateEventComponent, EventRouteActivator,
-  EventsListResolver, CreateSessionComponent
+  EventsListResolver, CreateSessionComponent, SessionListComponent
 } from './events/index';
 
 import { NavBarComponent } from './nav/nav-bar.component';
@@ -24,7 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EventsDetailsComponent,
     CreateEventComponent,
     Error404Component,
-    CreateSessionComponent
+    CreateSessionComponent,
+    SessionListComponent
   ],
   imports: [
     BrowserModule,
