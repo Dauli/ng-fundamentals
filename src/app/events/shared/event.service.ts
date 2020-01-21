@@ -26,6 +26,12 @@ export class EventService {
     EVENTS.push(event);
   }
 
+  // we update our event / session list with data from user
+  updateEvent(event) {
+    let index = EVENTS.findIndex( x => x.id = event.id);
+    EVENTS[index] = event;
+  }
+
 }
 
 // data. That could come from an API
