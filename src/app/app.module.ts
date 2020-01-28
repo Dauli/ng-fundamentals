@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { EventsAppComponent } from './events-app.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './route';
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import {
   EventsListComponent, ThumbnailComponent, EventService, ToastrService,
@@ -33,7 +34,8 @@ import { CollapsibleWellComponent } from './events/common/collapsible-well.compo
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FontAwesomeModule
   ],
   providers: [
     EventService,

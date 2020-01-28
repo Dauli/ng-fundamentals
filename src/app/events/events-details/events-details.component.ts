@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { EventService } from '../shared/event.service';
 import { IEvent, ISession } from '../shared/index';
 
+
 @Component({
   templateUrl: './events-details.component.html',
   styles: [`
