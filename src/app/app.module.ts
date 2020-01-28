@@ -8,7 +8,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import {
   EventsListComponent, ThumbnailComponent, EventService, ToastrService,
   EventsDetailsComponent, CreateEventComponent, EventRouteActivator,
-  EventsListResolver, CreateSessionComponent, SessionListComponent
+  EventsListResolver, CreateSessionComponent, SessionListComponent, DurationPipe
 } from './events/index';
 
 import { NavBarComponent } from './nav/nav-bar.component';
@@ -28,7 +28,8 @@ import { CollapsibleWellComponent } from './events/common/collapsible-well.compo
     Error404Component,
     CreateSessionComponent,
     SessionListComponent,
-    CollapsibleWellComponent
+    CollapsibleWellComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,
