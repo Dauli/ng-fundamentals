@@ -4,7 +4,7 @@ import { IEvent } from './event.model';
 
 @Injectable()
 export class EventService {
-  // We are using Observable, Subject
+  // We are using Observable, Subject to get data for our app
   getEvents(): Observable<IEvent[]> {
     let subject = new Subject<IEvent[]>();
     setTimeout( () => {
@@ -14,7 +14,7 @@ export class EventService {
     return subject;
   }
 
-  // methode uses in EventsDetailsComponent
+  // methode uses in EventsDetailsComponent to show event by id
   getEvent(id:number) {
     return EVENTS.find(event => event.id === id);
   }

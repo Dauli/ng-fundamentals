@@ -13,16 +13,22 @@ export class SessionListComponent implements OnChanges {
   faFire = faFire;
   faCar = faCar;
   @Input() filterBy: string;
+  @Input() sortBy: string;
   // this is a new sessions array copy for filtering, set to empty array
   // that each time all, beginner, ... is clicked, that array is
   // populated with the current filter to be displayed
   visibleSessions: ISession[] = []
 
   // We implements Onchanges to keep tracking every changes
-  // Automatically to apply filtering functionality
+  // Automatically to apply filtering functionality & sortering
   ngOnChanges() {
     if(this.sessions){
+      // filtery functionality
       this.filterSessions(this.filterBy);
+
+      // sorting functionality
+      this.sortBy === 'name' ? this.visibleSessions.sort(sortByNameAsc) :
+      this.visibleSessions.sort(sortByVotesDesc);
     }
   }
 
@@ -36,4 +42,15 @@ export class SessionListComponent implements OnChanges {
       });
     }
   }
+}
+
+// sorting algorithm functions
+function sortByNameAsc(s1: ISession, s2: ISession) {
+  if(s1.name > s2.name) return 1;
+  else if(s1.name === s2.name) return 0;
+  else return -1;
+}
+
+function sortByVotesDesc(s1: ISession, s2: ISession) {
+  return s2.voters.length - s1.voters.length;
 }
