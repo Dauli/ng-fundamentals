@@ -6,7 +6,7 @@ import { appRoutes } from './route';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import {
-  EventsListComponent, ThumbnailComponent, EventService, ToastrService,
+  EventsListComponent, ThumbnailComponent, EventService,
   EventsDetailsComponent, CreateEventComponent, EventRouteActivator,
   EventsListResolver, CreateSessionComponent, SessionListComponent, DurationPipe
 } from './events/index';
@@ -16,6 +16,9 @@ import { Error404Component } from './errors/404.component';
 import { AuthService } from './users/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CollapsibleWellComponent } from './events/common/collapsible-well.component';
+import { TOASTR_TOKEN, Toastr } from './events/common/toastr.service';
+
+declare let toastr: Toastr;
 
 @NgModule({
   declarations: [
@@ -40,7 +43,7 @@ import { CollapsibleWellComponent } from './events/common/collapsible-well.compo
   ],
   providers: [
     EventService,
-    ToastrService,
+    { provide: TOASTR_TOKEN, useValue: toastr },
     EventRouteActivator,
     { provide: 'canDeactiveCreateEvent', useValue: checkDirtyState },
     EventsListResolver,
