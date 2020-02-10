@@ -6,7 +6,7 @@ import { appRoutes } from './route';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import {
-  EventsListComponent, ThumbnailComponent, EventService, ToastrService,
+  EventsListComponent, ThumbnailComponent, EventService,
   EventsDetailsComponent, CreateEventComponent, EventRouteActivator,
   EventsListResolver, CreateSessionComponent, SessionListComponent, DurationPipe
 } from './events/index';
@@ -40,7 +40,6 @@ import { CollapsibleWellComponent } from './events/common/collapsible-well.compo
   ],
   providers: [
     EventService,
-    ToastrService,
     EventRouteActivator,
     { provide: 'canDeactiveCreateEvent', useValue: checkDirtyState },
     EventsListResolver,
