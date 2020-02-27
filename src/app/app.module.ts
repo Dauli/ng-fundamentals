@@ -4,6 +4,7 @@ import { EventsAppComponent } from './events-app.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './route';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { ToastrModule } from "ngx-toastr";
 
 import {
   EventsListComponent, ThumbnailComponent, EventService,
@@ -36,7 +37,8 @@ import { CollapsibleWellComponent } from './events/common/collapsible-well.compo
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    FontAwesomeModule
+    FontAwesomeModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     EventService,
