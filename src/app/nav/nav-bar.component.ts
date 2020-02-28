@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { AuthService } from '../users/auth.service';
+import { faSearch  } from '@fortawesome/free-solid-svg-icons';
+import { ISession, EventService } from '../events';
 
 @Component({
   selector: 'nav-bar',
@@ -24,5 +26,21 @@ import { AuthService } from '../users/auth.service';
   `]
 })
 export class NavBarComponent {
-  constructor(private authService: AuthService) {}
+  faSearch = faSearch;
+  searchTerm: string;
+  foundSessions:ISession[];
+
+  constructor(private authService: AuthService,
+    private eventService: EventService) {
+
+    }
+
+  // Search sessions function when user click to search
+  // then returns found sessions of type ISessions[]
+  searchSessions(searchTerm) {
+    this.eventService.searchSessions(searchTerm).subscribe( sessions => {
+      this.foundSessions = sessions;
+      console.log(this.foundSessions);
+    })
+  }
 }

@@ -36,14 +36,18 @@
           </li>
         </ul>
       </div>
-      <form id="searchForm"  class="navbar-form navbar-right"  >
+
+      <!-- Search part -->
+      <form id="searchForm" (ngSubmit)="searchSessions(SearchTerm)" class="navbar-form navbar-right"  >
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search Sessions" >
+          <input [(ngModel)]="SearchTerm" name="searchTerm" type="text" class="form-control" placeholder="Search Sessions" >
         </div>
         <button class="btn btn-default" routerLinkActive="active">
+          <fa-icon [icon]="faSearch"></fa-icon>
           Search
         </button>
       </form>
+      <!-- /End Search -->
     </div>
   </div>
 </div>
