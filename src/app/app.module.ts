@@ -17,6 +17,9 @@ import { Error404Component } from './errors/404.component';
 import { AuthService } from './users/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CollapsibleWellComponent } from './events/common/collapsible-well.component';
+import { JQ_TOKEN } from "./events/common/jquery.service";
+
+let jquery = window['$'];
 
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import { CollapsibleWellComponent } from './events/common/collapsible-well.compo
     EventRouteActivator,
     { provide: 'canDeactiveCreateEvent', useValue: checkDirtyState },
     EventsListResolver,
-    AuthService
+    AuthService,
+    { provide: JQ_TOKEN, useValue: jquery }
   ],
   bootstrap: [EventsAppComponent]
 })
