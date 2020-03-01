@@ -42,7 +42,7 @@
         <div class="form-group">
           <input [(ngModel)]="SearchTerm" name="searchTerm" type="text" class="form-control" placeholder="Search Sessions" >
         </div>
-        <button class="btn btn-default" routerLinkActive="active" modal-trigger>
+        <button class="btn btn-default" routerLinkActive="active" modal-trigger="searchResults">
           <fa-icon [icon]="faSearch"></fa-icon>
           Search
         </button>
@@ -52,8 +52,8 @@
   </div>
 </div>
 
-<!-- Modal html -->
-<simple-modal title="Matching Sessions">
+<!-- Modal html of content prejection -->
+<simple-modal elementId="searchResults" title="Matching Sessions">
   <div class="list-group">
     <a class="list-group-item" *ngFor="let session of foundSessions"
     [routerLink]="['/events', session.eventId]">
