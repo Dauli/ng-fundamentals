@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Params } from "@angular/router";
 import { EventService } from '../shared/event.service';
 import { IEvent, ISession } from '../shared/index';
 
@@ -24,8 +24,15 @@ export class EventsDetailsComponent implements OnInit{
   }
 
   ngOnInit() {
-    // displays of event details accordingly
-    this.event = this.eventService.getEvent( +this.route.snapshot.params['id'] );
+    /* displays of event details accordingly first approche
+    this.event = this.eventService.getEvent( +this.route.snapshot.params['id'] ); */
+
+    // navigate away from page itself on search result
+    // we import Params from angular/router
+    this.route.params.forEach((params: Params) => {
+      this.event = this.eventService.getEvent(+params['id']);
+      this.addMode = false;
+    });
   }
 
   // Toggling add session with boolean
