@@ -18,6 +18,7 @@ import { AuthService } from './users/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CollapsibleWellComponent } from './events/common/collapsible-well.component';
 import { JQ_TOKEN } from "./events/common/jquery.service";
+import { SimpleModalComponent } from './events/common/simple-modal.component';
 
 let jquery = window['$'];
 
@@ -33,7 +34,8 @@ let jquery = window['$'];
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent
   ],
   imports: [
     BrowserModule,
