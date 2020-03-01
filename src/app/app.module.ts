@@ -4,6 +4,7 @@ import { EventsAppComponent } from './events-app.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './route';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { ToastrModule } from "ngx-toastr";
 
 import {
   EventsListComponent, ThumbnailComponent, EventService,
@@ -16,9 +17,11 @@ import { Error404Component } from './errors/404.component';
 import { AuthService } from './users/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CollapsibleWellComponent } from './events/common/collapsible-well.component';
-import { TOASTR_TOKEN, Toastr } from './events/common/toastr.service';
+import { JQ_TOKEN } from "./events/common/jquery.service";
+import { SimpleModalComponent } from './events/common/simple-modal.component';
+import { ModalTriggerDirective } from './events/common/modal-trigger.directive';
 
-declare let toastr: Toastr;
+let jquery = window['$'];
 
 @NgModule({
   declarations: [
@@ -32,22 +35,25 @@ declare let toastr: Toastr;
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    FontAwesomeModule
+    FontAwesomeModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     EventService,
-    { provide: TOASTR_TOKEN, useValue: toastr },
     EventRouteActivator,
     { provide: 'canDeactiveCreateEvent', useValue: checkDirtyState },
     EventsListResolver,
-    AuthService
+    AuthService,
+    { provide: JQ_TOKEN, useValue: jquery }
   ],
   bootstrap: [EventsAppComponent]
 })
