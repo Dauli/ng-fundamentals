@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CollapsibleWellComponent } from './events/common/collapsible-well.component';
 import { JQ_TOKEN } from "./events/common/jquery.service";
 import { SimpleModalComponent } from './events/common/simple-modal.component';
+import { ModalTriggerDirective } from './events/common/modal-trigger.directive';
 
 let jquery = window['$'];
 
@@ -35,7 +36,8 @@ let jquery = window['$'];
     SessionListComponent,
     CollapsibleWellComponent,
     DurationPipe,
-    SimpleModalComponent
+    SimpleModalComponent,
+    ModalTriggerDirective
   ],
   imports: [
     BrowserModule,
