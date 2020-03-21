@@ -9,7 +9,8 @@ import { ToastrModule } from "ngx-toastr";
 import {
   EventsListComponent, ThumbnailComponent, EventService,
   EventsDetailsComponent, CreateEventComponent, EventRouteActivator,
-  EventsListResolver, CreateSessionComponent, SessionListComponent, DurationPipe
+  EventsListResolver, CreateSessionComponent, SessionListComponent,
+  DurationPipe, UpvoteComponent, VoterService
 } from './events/index';
 
 import { NavBarComponent } from './nav/nav-bar.component';
@@ -37,7 +38,8 @@ let jquery = window['$'];
     CollapsibleWellComponent,
     DurationPipe,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ let jquery = window['$'];
     { provide: 'canDeactiveCreateEvent', useValue: checkDirtyState },
     EventsListResolver,
     AuthService,
-    { provide: JQ_TOKEN, useValue: jquery }
+    { provide: JQ_TOKEN, useValue: jquery },
+    VoterService
   ],
   bootstrap: [EventsAppComponent]
 })

@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges } from "@angular/core";
 import { ISession } from '../shared';
 import { faFire } from "@fortawesome/free-solid-svg-icons";
-import { faCar } from "@fortawesome/free-solid-svg-icons";
+import { AuthService } from 'src/app/users/auth.service';
+import { VoterService } from './voter.service';
 
 
 @Component({
@@ -11,13 +12,14 @@ import { faCar } from "@fortawesome/free-solid-svg-icons";
 export class SessionListComponent implements OnChanges {
   @Input() sessions: ISession[];
   faFire = faFire;
-  faCar = faCar;
   @Input() filterBy: string;
   @Input() sortBy: string;
   // this is a new sessions array copy for filtering, set to empty array
   // that each time all, beginner, ... is clicked, that array is
   // populated with the current filter to be displayed
   visibleSessions: ISession[] = []
+
+  constructor(public auth: AuthService, private voterService: VoterService ) {}
 
   // We implements Onchanges to keep tracking every changes
   // Automatically to apply filtering functionality & sortering
@@ -30,6 +32,22 @@ export class SessionListComponent implements OnChanges {
       this.sortBy === 'name' ? this.visibleSessions.sort(sortByNameAsc) :
       this.visibleSessions.sort(sortByVotesDesc);
     }
+  }
+
+  // Toggle vote methode uses in UpvoteComponent
+  toggleVote(session: ISession) {
+    if (this.userHasVoted(session)) {
+      this.voterService.deleteVoter(session, this.auth.currentUser.userName);
+    } else {
+      this.voterService.addVoter(session, this.auth.currentUser.userName);
+    }
+    if (this.sortBy === 'votes') {
+      this.visibleSessions.sort(sortByVotesDesc);
+    }
+  }
+
+  userHasVoted(session: ISession) {
+    return this.voterService.userHasVoted(session, this.auth.currentUser.userName);
   }
 
   // FilterSessions functionality that displays acordingly to current filter
